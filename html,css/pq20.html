@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>css part-6</title>
+  </head>
+  <body>
+    <h1>loader</h1>
+
+    <div class="container">
+      <div class="item1">1 header(1row,12column)</div>
+      <div class="item2">2 sidebar(10row,3column)</div>
+      <div class="item3">3 navigation(1row,6column)</div>
+      <div class="item4">4 ads(10row,3column)</div>
+      <div class="item5">5 main(9rows,6columns)</div>
+      <div class="item6">6 footer(row,12column)</div>
+    </div>
+
+    <hr />
+    <div class="loader"></div>
+    /* layout using grid */
+
+    <style>
+      .container {
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+        border: 2px solid black;
+        display: grid;
+        grid-template-rows: repeat(12, 1fr);
+        grid-template-columns: repeat(12, 1fr);
+        grid-gap: 10px;
+      }
+
+      .container div {
+        font-size: 1.5rem;
+      }
+      .item1 {
+        grid-column: 1 / span 12;
+      }
+      .item2 {
+        grid-column: 1 / span 3;
+        grid-row: 2 / span 10;
+      }
+      .item3 {
+        grid-column: 4 / span 6;
+      }
+      .item4 {
+        grid-column: 10 / span 3;
+        grid-row: 2 / span 10;
+      }
+      .item5 {
+        grid-column: 4 / span 6;
+        grid-row: 3 / span 9;
+      }
+      .item6 {
+        background-color: pink;
+        grid-column: 1 / span 12;
+      }
+      .loader {
+        height: 120px;
+        width: 120px;
+        border: 16px solid #f3f3f3;
+        border-top: 16px solid goldenrod;
+        border-radius: 50%;
+        animation: colorChang 3s linear infinite;
+      }
+      @keyframes colorChang {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+
+        }
+      }
+
+      @media (max-width: 720px) {
+        .container {
+          background-color: teal;
+
+          .item1 {
+            grid-column: 1/13;
+            grid-row: 1/1;
+          }
+          .item2 {
+            grid-column: 1/4;
+            grid-row: 3/12;
+          }
+          .item3 {
+            grid-column: 1/13;
+            grid-row: 2/2;
+          }
+          .item4 {
+            grid-column: 1/4;
+            grid-row: 12/12;
+          }
+          .item5 {
+            grid-column: 4/13;
+            grid-row: 3/12;
+          }
+          .item6 {
+            grid-column: 4/13;
+            grid-row: 12/12;
+          }
+        }
+      }
+    </style>
+  </body>
+</html>

@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>formevent</title>
+  </head>
+  <body>
+    <form action="/action">
+      <input placeholder="enter username" id="user"/>
+      <input placeholder="enter password" id="pwd" />
+      <button>Register</button>
+    </form>
+
+    <script>
+
+
+
+      let form=document.querySelector('form');
+      let btn=document.querySelector('button');
+      form.addEventListener('submit',function(event){
+        event.preventDefault();
+
+        // alert("form submitted successfully!!!");
+
+        // let user=document.querySelector('#user');
+        // let pwd=document.querySelector('#pwd');
+        // console.dir(user.value)
+        // console.dir(pwd.value)
+
+
+        //another way to acceess form element
+let user=this.elements[0];
+let pwd=this.elements[1];
+// console.dir(form)
+        console.dir(user.value)
+        console.dir(pwd.value)
+      })
+    
+    
+//change event
+
+// let user=document.querySelector('#user');
+// user.addEventListener('change',function(){
+//   console.dir(user.value)
+// })
+
+//input event
+let user=document.querySelector('#user');
+user.addEventListener('input',function(){
+  console.dir(this.value)
+})
+    </script>
+  </body>
+</html>

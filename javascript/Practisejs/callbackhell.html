@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>callback hell</title>
+    <style></style>
+  </head>
+  <body>
+    <h1>Apna javascript</h1>
+
+    <script>
+      h1 = document.querySelector("h1");
+      //using async and await
+
+      // function changeColor(color, delay) {
+      //   return new Promise((resolve, reject) => {
+      //     setTimeout(() => {
+      //       h1.style.color = color;
+      //       console.log(`color changed to ${color}`)
+      //       resolve();
+      //     }, delay);
+      //   });
+      // }
+
+      // async function demo() {
+      //   await changeColor("red", 1000);
+      //   await changeColor("blue", 1000);
+      //   await changeColor("green", 1000);
+      //   await changeColor("yellow", 1000);
+      // }
+
+      // demo();
+
+      //*******************************************
+      //using promise
+      function changeColor(color, delay) {
+        return new Promise((resolve, reject) => {
+          setTimeout(() => {
+            let num = Math.floor(Math.random() * 10) + 1;
+
+            console.log(num);
+            if (num > 3) {
+              reject("promise rejected");
+            }
+          }, 1000);
+          // });
+          setTimeout(() => {
+            h1.style.color = color;
+            resolve(color);
+          }, delay);
+        });
+      }
+
+      changeColor("red", 1000)
+        .then((data) => {
+          console.log("1st color", data);
+          return changeColor("yellow", 1000);
+        })
+        .then((data) => {
+          console.log("2nd color", data);
+          return changeColor("pink", 3000);
+        })
+        .then((data) => {
+          console.log("All colors applied ");
+          return;
+        })
+        .catch((err) => console.log(err));
+
+      //***********************************************************
+      //using normal function
+      // function changecolor(color, delay, nextcolorchange) {
+      //   setTimeout(() => {
+      //     h1.style.color = color;
+      //     if (nextcolorchange) nextcolorchange();
+      //   }, delay);
+      // }
+
+      // changecolor("red", 1000, () => {
+      //   changecolor("orange",1000 , () => {
+      //     changecolor("green", 1000);
+      //   });
+      // });
+
+      //since only color is changing repeatedly we can make functionn and take color as parameter
+    </script>
+  </body>
+</html>

@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DOM THIS</title>
+  </head>
+  <body>
+    <button>subscribe my channel</button>
+    <p>i am dom element this</p>
+    <div>his is a div</div>
+
+    <script>
+      let btn = document.querySelector("button");
+      let p = document.querySelector("p");
+      let div = document.querySelector("div");
+
+      function changecolor() {
+        console.log(this);
+        console.log(this.innerText);
+        this.style.backgroundColor = "red";
+      }
+      function exitcolor() {
+      
+        this.style.backgroundColor ='white';
+      }
+
+      btn.addEventListener("click", changecolor);
+      p.addEventListener("mouseenter", changecolor);
+      p.addEventListener("click", exitcolor);
+      div.addEventListener("mouseenter", changecolor);
+    </script>
+  </body>
+</html>

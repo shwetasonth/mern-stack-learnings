@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>css part-4</title>
+  </head>
+  <body>
+    <div id="container">
+      <div id="circle">
+        <div class="eyebrow1"></div>
+        <div class="eyebrow2"></div>
+        <div id="eye1"></div>
+        <div id="eye2"></div>
+        <div id="mouth"></div>
+      </div>
+
+      <div class="semi"></div>
+    </div>
+
+    <style>
+      #container {
+        height: 400px;
+        width: 400px;
+        background-color: white;
+        border: 2px solid black;
+        position: absolute;
+      }
+
+      #circle {
+        height: 90%;
+        width: 90%;
+        background-color: yellow;
+        border: 2px solid black;
+        margin: 20px auto;
+        border-radius: 50%;
+      }
+
+      #eye1,
+      #eye2 {
+        height: 10%;
+        width: 10%;
+        background-color: rgb(21, 17, 17);
+        border: 2px solid black;
+        border-radius: 50%;
+        margin: 10px;
+        display: inline-block;
+        position: absolute;
+        left: 100px;
+        top: 100px;
+   
+      }
+
+      #eye2 {
+        left: 250px;
+      }
+
+      .eyebrow1,
+      .eyebrow2 {
+        height: 16%;
+        width: 10%;
+        border: 8px solid black;
+        /* border-bottom: none; */
+        border-radius: 90px 90px 90px 90px;
+        position: absolute;
+        top: 80px;
+        left: 98px;
+        display: inline-block;
+      }
+
+      .eyebrow2 {
+        left: 258px;
+      }
+
+      
+      #mouth {
+        width: 160px;
+        height: 80px;
+        border: 10px solid rgb(213, 21, 21);
+        border-top: none; /*Remove the top border*/
+        border-radius: 10px 10px 110px 110px;
+        /* border-bottom-right-radius: 50px; */
+        position: absolute;
+        top: 230px;
+        left: 110px;
+        transition: transform 4s;
+      }
+
+      #mouth:hover {
+        /* transform: scale(1.5); */
+        transform: scale(2);
+      }
+    </style>
+  </body>
+</html>

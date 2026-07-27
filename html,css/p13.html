@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>css part2</title>
+</head>
+<body>
+  <h1 id="mainTopic">CSSPractice</h1>
+  <h3>Let'slearnaboutselector.</h3>
+  <!--Paragraph1--><p>Therearemultipleselectorsincss.</p>
+  <!--Paragraph2--><p>Someofthemincludeclassselector,idselectoretc.</p>
+  <!--Paragraph3--><p>Andwecanalsocombinethesetoo.</p>
+  <div>shwetasonth1@gmail.com
+<h5>Didyoulikethepracticeset?</h5>
+<input type="checkbox" id="yes"/><label for="yes">Yes</label><br/><button>Learnnext!</button></div>
+
+<style>
+#mainTopic{
+  color:blue;
+}
+
+*{
+  text-align:center;
+}
+
+h1,h3,h5{
+  font-family:Georgia;
+}
+
+p{
+  color:white;
+  background-color:cornflowerblue;
+}
+
+div button{
+  background-color:rgb(229, 20, 194);
+  color:azure;
+}
+
+/* pseudo class selector */
+div button:hover{
+  background-color:yellow;
+  color:rgb(71, 13, 216);
+}
+/* pseudo class selector */
+p:nth-of-type(2n+1){
+  color:yellow;
+}
+/* pseudo element selector */
+h1::first-letter
+{
+  color:rgb(222, 14, 25);
+  
+}
+/* pseudo class selector */
+input[ type="checkbox"]:checked+label{   
+  color:green;
+}
+
+
+</style>
+
+<!-- Qs10.Ordertheserulesaccordingtotheirspecificity,fromleastspecifictomostspecific.:-h1-#mainContent-.main-div.main -->
+
+<!-- ans : 1)#mainContent 
+3)div .main 
+      2).main 
+      4)h1     -->
+</body>
+</html>

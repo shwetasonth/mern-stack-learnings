@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>fetch</title>
+  </head>
+  <body>
+    <script>
+      //one of the example of promise chanining
+      //fetch with promises
+      // let url = "https://catfact.ninja/fact";
+      // fetch(url)
+      //   .then((response) => {
+      //     // console.log(response);
+      //     return response.json();
+      //   })
+      //   .then((data1) => {
+      //     console.log("data1=", data1);
+      //     console.log("data1=", data1.fact);
+      //     return fetch(url);
+      //   })
+      //   .then((response2) => {
+      //     // console.log(response2);
+      //     return response2.json();
+      //   })
+      //   .then((data2) => {
+      //     console.log("data2=", data2);
+      //     console.log("data2=", data2.fact);
+      //   })
+      //   .catch((err) => {
+      //     console.log(err);
+      //   });
+
+      //fetch with async and await
+
+      let url1 = "https://catfact.ninja/fact ";
+      async function demo() {
+        try {
+          let res = await fetch(url1);
+          let data = await res.json();
+          // console.log(res)
+          console.log(data.fact);
+          let res1 = await fetch(url1);
+          let data1 = await res1.json();
+          console.log(data1.fact);
+        } catch (err) {
+          console.error(err);
+        }
+      }
+      demo();
+      console.log("bye")
+    </script>
+  </body>
+</html>

@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Animations</h1>
+    <div class="box">This is a box</div>
+    <style>
+      .box {
+        height: 100px;
+        width: 300px;
+        background-color: pink;
+        /* animation-name: fontAnimation, colorchange,widthAnimate;
+        animation-duration: 2s;
+        animation-timing-function: ease-in;
+        animation-delay: 0;
+        animation-iteration-count: 3;
+        animation-direction: normal; */
+
+        animation:percentageAnimate 3s ease-in 0s infinite normal;
+      }
+
+      @keyframes fontAnimation {
+        from {
+          font-size: 20px;
+        }
+        to {
+          font-size: 40px;
+        }
+      }
+
+      @keyframes colorchange {
+        from {
+          background-color: teal;
+        }
+        to {
+          background-color: magenta;
+        }
+      }
+
+      @keyframes widthAnimate {
+        from {
+          width: 10px;
+        }
+        to {
+          width: 400px;
+        }
+      }
+
+      /*applying multiple properties to animate*/
+
+      @keyframes multipleAnimat{
+        from{  background-color: teal; width: 10px;}
+        to{ background-color: magenta;width: 400px;border-radius:15px;}
+      }
+
+      /*animate in percentage*/
+      @keyframes percentageAnimate{
+        0%{background-color: aqua;width: 20px;}
+        20%{background-color: rgb(141, 207, 8);width: 40px;border-radius:110px}
+        60%{background-color: rgb(204, 9, 198);width: 80px;border-radius:210px}
+        100%{background-color: rgb(220, 94, 11);width: 500px;}
+      }
+    </style>
+  </body>
+</html>

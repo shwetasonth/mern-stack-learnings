@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CSS part 4</title>
+  </head>
+  <body>
+    <div id="box1">Thisisbox1</div>
+    <div id="box2">Thisisbox2</div>
+    <div id="box3">Thisisbox3</div>
+    <div id="box4">Thisisbox4</div>
+    <div id="myPic">ThisismyPic</div>
+
+    <style>
+      /*Qs1.Adda2stransitiononbox1forwidthchanges.Itshouldhave'ease-in'speedcurve&0.5sdelay*/
+      #box1 {
+        width: 100px;
+        height: 100px;
+        background: green;
+        transition: width 2s ease-in 0.5s;
+      }
+
+      #box1:hover {
+        width: 600px;
+      }
+
+      /*Qs2.Usingtransform,movebox2200pxtotheright&200pxdown.Alsorotateit90deg.*/
+      #box2 {
+        width: 100px;
+        height: 100px;
+        background: red;
+          transform: translate(200px, 200px) rotate(90deg);
+        /* transition: all 2s; */
+      }
+
+      /* #box2:hover {
+      
+      } */
+
+      /*Qs3.Usingtransform,skewbox320degalongthexaxis.*/
+      #box3 {
+        width: 100px;
+        height: 100px;
+        background: lightblue;
+        transform: skewX(-20deg);
+      }
+
+     
+
+      /*Qs4.Seta2pxhorizontal&2pxvertical,greenshadowforbox4,witha5pxblurradius.*/
+      #box4 {
+        width: 100px;
+        height: 100px;
+        background: lightgreen;
+        box-shadow: 2px 2px 5px green;
+        /* box-shadow:inset 2px 2px 5px green; */
+      }
+
+      /*Qs5.SetYourpictureoranypictureasthebackgroundofthediv"myPic".Also,settransparencyofthisdivto50%.*/
+      #myPic {
+        width: 200px;
+        height: 200px;
+        background: pink;
+        background-image: url("shweta.jpeg");
+        background-size:cover;
+        opacity:50%;
+      }
+    </style>
+  </body>
+</html>

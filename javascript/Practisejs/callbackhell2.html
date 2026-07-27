@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>promises</title>
+  </head>
+  <body>
+    <script>
+            function savetoDb(data, success, failure) {
+              let internetSpeed = Math.floor(Math.random() * 10) + 1;
+      console.log(data)
+              if (internetSpeed > 4) {
+                success();
+              } else {
+                failure();
+              }
+            }
+
+            savetoDb(
+              "apna school",
+              () => {
+                console.log("success1 : your data was saved ");
+                savetoDb(
+                  "hello world",
+                  () => {
+                    console.log("success2 : saved!");
+                    savetoDb("world namaste",()=>{
+
+                      console.log("success3 : saved");
+                    },()=>{
+
+                      console.log("failure3 : weak connection.data not saved");
+                    })
+                  },
+                  () => {
+                    console.log("failure2 : weak connection");
+                  },
+                );
+              },
+              () => {
+                console.log("failure : weak connection");
+              },
+            );
+
+
+            // truthy & falsy value
+
+            // let value=True;
+            // if(value){
+            //   console.log("value exists",value)
+            // }
+    </script>
+  </body>
+</html>

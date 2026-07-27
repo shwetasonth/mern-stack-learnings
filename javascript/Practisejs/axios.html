@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Axios</title>
+  </head>
+  <body>
+    <h1>***using AXIOS</h1>
+
+    <h1>Get random cat facts</h1>
+
+    <button>Show new fact</button>
+    <p id="fact"></p>
+
+    <h1>***how to use headers in axios</h1>
+    <button id="btn">Show dog image</button>
+    <img />
+
+    <h1>***updating query string in url</h1>
+    <input type="text" />
+    <button id="btn3">Search collage in country</button>
+    <div>
+      <input type="text" id="input1" />
+      <button id="btn4">Search collage in state</button>
+      <ul id="list"></ul>
+    </div>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.18.1/axios.min.js"
+      integrity="sha512-l1tCs7ua0mpVzhqYBRTbxh05c4bT7cu1Ma5vSpcwT9yP75wEkbGhwIe1kxmowZRVXxwjTMCbogc3A7y4SUfT7w=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script>
+      //passing headers in url
+
+      // async function geturl() {
+      //   let config = { headers: { "Accept": "application/json" } };
+      //   let res = await axios("https://icanhazdadjoke.com/");
+      //   console.log(res);
+      //   console.log(res.data);
+      // }
+      // geturl();
+
+      //updating query in url
+      let collageurl = "http://universities.hipolabs.com/search?name=";
+
+      btn3 = document.querySelector("#btn3");
+
+      btn3.addEventListener("click", async () => {
+        let country = document.querySelector("input").value;
+        let result = await getUniversityDetails(country);
+        console.log(result);
+        show(result);
+      });
+
+      //mapping array
+      function show(result) {
+        let ul = document.querySelector("ul");
+        ul.innerText = " ";
+        result.map((college) => {
+          let li = document.createElement("li");
+          li.innerText = college.name;
+
+          ul.appendChild(li);
+        });
+      }
+
+      async function getUniversityDetails(country) {
+        try {
+          let college = await axios(collageurl + country);
+          console.log(college);
+          return college.data;
+        } catch (err) {
+          console.log(err);
+        }
+      }
+
+      //colleges according to the state
+      btn4 = document.querySelector("#btn4");
+      btn4.addEventListener("click", async () => {
+        let state = document.querySelector("#input1").value;
+        let result = await getCollegeDetails(state);
+
+        show(result);
+      });
+      async function getCollegeDetails(state) {
+        try {
+          let college = await axios(collageurl + state);
+          let result = college.data;
+          return result;
+        } catch (err) {
+          console.log(err);
+        }
+      }
+      let url = "https://catfact.ninja/fact";
+      let url1 = "https://dog.ceo/api/breeds/image/random";
+
+      btn = document.querySelector("button");
+
+      btn1 = document.querySelector("#btn");
+
+      btn.addEventListener("click", async () => {
+        let fact = await getfacts();
+        let p = document.querySelector("p");
+        p.innerText = fact;
+      });
+
+      btn1.addEventListener("click", async () => {
+        let link = await getimage();
+        console.log(link);
+
+        let img1 = document.querySelector("img");
+        img1.setAttribute("src", link);
+      });
+
+      async function getfacts() {
+        try {
+          let res = await axios.get(url);
+          console.log(res);
+          console.log(res.data);
+
+          return res.data.fact;
+        } catch (err) {
+          console.log(err);
+        }
+        // console.log("bye");
+      }
+
+      async function getimage() {
+        try {
+          let res = await axios.get(url1);
+          console.log(res);
+          console.log(res.data);
+
+          return res.data.message;
+        } catch (err) {
+          console.log(err);
+        }
+        // console.log("bye");
+      }
+    </script>
+  </body>
+</html>

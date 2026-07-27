@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>css part-5</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="alpha">A</div>
+      <div class="alpha">B</div>
+      <div class="alpha">C</div>
+      <div class="alpha">D</div>
+      <div class="alpha">E</div>
+      <div class="alpha">F</div>
+      <div class="alpha">G</div>
+      <div class="alpha">H</div>
+      <div class="alpha">I</div>
+    </div>
+    <hr />
+
+    <!-- answer 2 -->
+
+    <div class="nav">
+      <div><b>logo</b></div>
+      <div><b>Home</b></div>
+      <div><b>About</b></div>
+      <div><b>Contact</b></div>
+    </div>
+
+    <style>
+      .nav {
+        height: 50px;
+        width: 100%;
+        max-width: 900px;
+        border: 4px solid teal;
+        border-radius: 5px;
+        background-color: pink;
+        display: flex;
+        align-items: center;
+        padding-left: 15px;
+        gap: 20px;
+      }
+
+      .nav > div {
+        font-size: 24px;
+      }
+      .container {
+        height: 400px;
+        width: 400px;
+        border: 4px solid rgb(128, 0, 32);
+        border-radius: 15px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+        align-content: space-evenly;
+      }
+
+      .alpha {
+        height: 100px;
+        width: 100px;
+        border: 3px solid black;
+        border-radius: 15px;
+        background-color: grey;
+        font-size: 50px;
+        text-align: center;
+      }
+    </style>
+  </body>
+</html>

@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Promises</title>
+  </head>
+  <body>
+    <script>
+      //promise is an object which has 2 callbacks resolve & reject
+      //refactored code of callback hell.html file using promises
+
+      // promise is an object which has a callback function ,containing 2 callbacks resolve & reject
+      function saveToDb(data) {
+        return new Promise((resolve, reject) => {
+          let internetSpeed = Math.floor(Math.random() * 10) + 1;
+          if (internetSpeed > 4) {
+            resolve(data);
+          } else {
+            reject("weak connection");
+          }
+        });
+      }
+
+      saveToDb("Data1")
+        .then((data) => {
+          console.log("promise1");
+          console.log("result of promise",data);
+          return saveToDb("Data2").then((data) => {
+            console.log("promise2");
+            console.log("result of promise",data);
+            return saveToDb("Data3").then((data) => {
+              console.log("promise3");
+              console.log("result of promise",data);
+            });
+          });
+        })
+        .catch((error) => {
+          console.log("rejected");
+          console.log(error);
+        });
+      //promise chaining
+
+      //   saveToDb("1st promise object")
+      //     .then((data) => {
+      //       console.log("success", data);
+      //       saveToDb("2nd promise object")
+      //         .then((data) => {
+      //           console.log("success1", data);
+      //           saveToDb("3rd promise object")
+      //             .then((data) => console.log("success2", data))
+      //             .catch((err) => console.log("rejected2", err));
+      //         })
+      //         .catch((err) => console.log("rejected1", err));
+      //     })
+      //     .catch((err) => console.log("rejected", err));
+      //
+    </script>
+  </body>
+</html>
