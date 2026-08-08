@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quora</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Quora Posts</h1>
+
+  <%for(post of posts){%>
+  <div class="post">
+    <h3 class="user">@<%=post.username%></h3>
+    <p class="comments"><%=post.comment%></p>
+    
+ 
+  <div id="imgdiv">
+
+
+    <input type="file" id="file" name="file" value="">
+<button id="btn1">upload</button>
+  </div>
+   
+
+<a href="http://localhost:3000/posts/<%=post.id%>">Show in detail</a>
+<a href="http://localhost:3000/posts/<%=post.id%>/edit">edit</a>
+ </div>
+ 
+
+<br/><br/>
+<form method="post" action="/posts/<%=post.id%>?_method=delete" >
+<button>Delete Post</button>
+</form>
+  </div>
+  <%}%>
+
+    <a href="http://localhost:3000/posts/new">Create new Post</a>
+
+  
+  <script src="app.js">
+
+  </script>
+    </body>
+</html>
