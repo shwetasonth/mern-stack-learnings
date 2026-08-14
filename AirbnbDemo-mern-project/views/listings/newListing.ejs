@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AirbnbDemo</title>
+  </head>
+  <body>
+    <h1>Create a New Listing</h1>
+
+    <form method="POST" action="/listings">
+      <input
+        type="text"
+        placeholder="Enter listing name"
+        name="listing[title]"
+      /><br /><br />
+      <textarea
+        type="text"
+        placeholder="Write description here`"
+        name="listing[description]"
+      ></textarea
+      ><br /><br />
+
+      <input
+        type="text"
+        placeholder="image URL"
+        name="listing[image]"
+      /><br /><br />
+
+      <input
+        type="number"
+        placeholder="price"
+        name="listing[price]"
+      /><br /><br />
+
+      <input
+        type="text"
+        placeholder="Enter location"
+        name="listing[location]"
+      /><br /><br />
+      <input
+        type="text"
+        placeholder="Country"
+        name="listing[country]"
+      /><br /><br />
+      <button>Add</button>
+    </form>
+  </body>
+</html>
