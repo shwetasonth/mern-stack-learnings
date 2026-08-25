@@ -6,10 +6,12 @@
   </div>
 
   <div class="card col-6 offset-3 show-card">
+    <%# Shimmer added by Copilot: remove it after the listing image loads. %>
     <img
       src="<%=listing.image%>"
-      class="card-img-top show-img"
+      class="card-img-top show-img shimmer"
       alt="listing-image"
+      onload="this.classList.remove('shimmer')"
     />
     <div class="card-body">
       <p class="card-text">
@@ -21,13 +23,13 @@
       </p>
     </div>
   </div>
-    <div class="btns">
-      <a href="/listings/<%=listing._id%>/edit" class="btn  col-1 offset-3 add-btn">Edit </a>
+  <div class="btns">
+    <a href="/listings/<%=listing._id%>/edit" class="btn col-1 offset-3 add-btn"
+      >Edit
+    </a>
 
-      <form method="post" action="/listings/<%=listing._id%>?_method=delete">
-       
-        <button class="btn btn-dark offset-4">Delete</button>
-      </form>
-    </div>
-
+    <form method="post" action="/listings/<%=listing._id%>?_method=delete">
+      <button class="btn btn-dark offset-4">Delete</button>
+    </form>
+  </div>
 </div>

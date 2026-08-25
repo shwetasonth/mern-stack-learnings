@@ -8,8 +8,18 @@ const Customerror = require("./Customerror.js");
 
 const port = 8000;
 
+
+
+//asynWrap function for error handling in async routes without try and catch
+//this function handles error only async errors validation errors not mongoose errors
+function asyncWrap(fn){
+  return function(req,res,next){
+    fn(req,res,next).catch(err=>next(err))
+  }
+
+}
 //set path
-app.set("view-engine", "ejs");
+app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 
 //middleware
@@ -27,31 +37,24 @@ main()
   .catch((err) => console.log(err));
 
 //index route
-app.get("/chats", async (req, res, next) => {
-  try {
+app.get("/chats",  asyncWrap(async (req, res, next) => {
     let chats = await Chat.find();
     // console.log(chats);
     if (!chats) {
       throw new Customerror(401, "Page not found");
     }
     res.render("index.ejs", { chats });
-  } catch (err) {
-    next(err);
-  }
-});
+
+}));
 
 //create chat form
 app.get("/chats/new", (req, res, next) => {
-  try {
     res.render("newchat.ejs");
-  } catch (err) {
-    next(err);
-  }
+
 });
 
 //create chat in db
-app.post("/chats", async (req, res, next) => {
-  try {
+app.post("/chats",  asyncWrap(async (req, res, next) => {
     let { from, to, msg } = req.body;
 
     await Chat.insertOne({
@@ -61,48 +64,56 @@ app.post("/chats", async (req, res, next) => {
       created_At: new Date(),
     });
     res.redirect("/chats");
-  } catch (err) {
-    next(err);
-  }
-});
+  
+}));
 
 //edit form for chat message
-app.get("/chats/:id/edit", async (req, res, next) => {
-  try {
+app.get("/chats/:id/edit", asyncWrap( async (req, res, next) => {
+
     let { id } = req.params;
 
     let chat = await Chat.findById(id);
     res.render("editchat.ejs", { chat });
-  } catch (err) {
-    next(err);
-  }
-});
+
+}));
 
 //edit chat
-app.put("/chats/:id", async (req, res, next) => {
-  try {
+app.put("/chats/:id", asyncWrap(async (req, res, next) => {
     let { id } = req.params;
     let { msg: newMsg } = req.body;
     let result = await Chat.findByIdAndUpdate(
       id,
       { msg: newMsg },
-      { runValidators: true, new: true },
+      { runValidators: true, returnDocument: "after" },
     );
     res.redirect("/chats");
-  } catch (err) {
-    next(err);
-  }
-});
+}));
 
 //delete chat
-app.delete("/chats/:id", async (req, res) => {
+app.delete("/chats/:id",  asyncWrap(async (req, res) => {
   let { id } = req.params;
   let deletedChat = await Chat.findByIdAndDelete(id);
   console.log(deletedChat);
   res.redirect("/chats");
-});
+}));
 
-//error handling middleware
+
+function handleValidationErr(err){
+  console.log("This was a Validation error.Pleaase follow rules");
+  console.dir(err.message);
+  return(err)
+}
+
+
+//error handling middleware 1
+app.use((err,req,res,next)=>{
+  console.log(err.name);
+  if(err.name==="ValidationError"){
+   err= handleValidationErr(err)
+  }
+  next(err);
+})
+//error handling middleware 2
 app.use((err, req, res, next) => {
   let { status = err.status|| 500, msg = err.message||"some error occured" } = err;
   res.status(status).send(msg);

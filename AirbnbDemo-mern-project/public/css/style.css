@@ -1,3 +1,9 @@
+.error-icon {
+  width: 1.25em;
+  height: 1.25em;
+  fill: #dc3545;
+  flex: 0 0 auto;
+}
 body{
   display: flex;
   flex-direction: column;
@@ -13,6 +19,20 @@ body{
 .navbar{
   height: 5rem;
   background-color:white;
+  /* Header shadow and transitions added by Copilot */
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.25s ease, background-color 0.25s ease;
+}
+
+.navbar-brand,
+.nav-link,
+.navbar-toggler{
+  transition: color 0.25s ease, background-color 0.25s ease, transform 0.25s ease;
+}
+
+.navbar-brand:hover,
+.navbar-toggler:hover{
+  transform: translateY(-2px);
 }
 
 .fa-compass{
@@ -22,6 +42,19 @@ body{
 
 .nav-link{
   color:#222222!important;
+  /* Responsive header font sizing added by Copilot */
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.nav-link:hover{
+  color:#fe424d!important;
+}
+
+@media (max-width: 767px){
+  .nav-link{
+    font-size: 0.95rem;
+  }
 }
 
 /* footer styling */
@@ -62,7 +95,16 @@ body{
  .card{
   border:none !important;
   margin-bottom: 2rem;
+  /* Card shadow added by Copilot */
+  
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
 
+ }
+
+ .card:hover{
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
+  transform: translateY(-2px);
  }
 
  .card-img-top{
@@ -80,6 +122,29 @@ body{
 .listing-link{
   text-decoration: none;
  }
+
+/* Loading shimmer added by Copilot */
+.shimmer,
+.shimmer-form ,
+.shimmer-form .add-btn{
+  background: linear-gradient(90deg, #eeeeee 25%, #f8f8f8 50%, #eeeeee 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.2s ease-in-out infinite;
+}
+
+@keyframes shimmer{
+  from{
+    background-position: 200% 0;
+  }
+  to{
+    background-position: -200% 0;
+  }
+}
+
+.shimmer-form .form-control,
+.shimmer-form .add-btn{
+  animation-iteration-count: 2;
+}
 
 
 /* New listing styling */

@@ -40,3 +40,8 @@ APIs
 - Used EJS and EJS-Mate to create reusable server-rendered views and layouts.
 
 - Used form handling, `method-override`, static files, and responsive styling to create a complete web application workflow.
+
+
+
+
+![Backend Error handling](image.png)
