@@ -2,7 +2,7 @@
 
 <div class="row">
   <div class="col-8 offset-3">
-    <h3>Listing Details :</h3>
+    <h3><b> <%=listing.title%></b> :</h3>
   </div>
 
   <div class="card col-6 offset-3 show-card">
@@ -31,5 +31,67 @@
     <form method="post" action="/listings/<%=listing._id%>?_method=delete">
       <button class="btn btn-dark offset-4">Delete</button>
     </form>
+  </div>
+  <div class="col-8 offset-3 mb-3">
+    <hr />
+    <h4>Leave a Review</h4>
+    <form method="POST" action="/listings/<%=listing.id%>/reviews" novalidate class="needs-validation">
+      <div class="mb-3 mt-3">
+        <lable for="rating" class="form-label">Rating</lable>
+        <input
+          type="range"
+          min="1"
+          max="5"
+          id="rating"
+          name="review[rating]"
+          class="form-range"
+        />
+      </div>
+      <div class="mb-3 mt-3">
+        <lable for="comment" class="form-label">Comments</lable>
+        <textarea
+          id="comment"
+          name="review[comment]"
+          cols="30"
+          rows="5"
+          class="form-control" required
+        ></textarea>
+        <div class="invalid-feedback">Please add some comments for review</div>
+      </div>
+      <button class="btn btn-outline-dark">Submit</button>
+    </form>
+  </div>
+
+  <div class="col-8 offset-3 mb-3">
+    <hr />
+    <h4 class="review-section-title">All Reviews</h4>
+    <% if(listing.reviews.length) { %>
+      <div class="review-grid">
+        <% listing.reviews.forEach((review) => { %>
+          <div class="card review-card">
+            <div class="card-body review-card-body">
+              <h5 class="review-author">Jane Doe</h5>
+              <p class="review-comment"><%= review.comment %></p>
+              <div class="review-meta">
+                <div class="review-stars">
+                  <% for(let i = 0; i < review.rating; i++) { %>
+                    <i class="fa-solid fa-star"></i>
+                  <% } %>
+                  <% for(let i = review.rating; i < 5; i++) { %>
+                    <i class="fa-regular fa-star"></i>
+                  <% } %>
+                </div>
+                <span class="rating-number"><%= review.rating %> stars</span>
+              </div>
+              <form method="POST" action="/listings/<%=listing._id%>/reviews/<%=review._id%>?_method=delete">
+                <button class="btn review-delete-btn">Delete</button>
+              </form>
+            </div>
+          </div>
+        <% }); %>
+      </div>
+    <% } else { %>
+      <p>No reviews yet. Be the first to review!</p>
+    <% } %>
   </div>
 </div>
