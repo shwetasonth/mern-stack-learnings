@@ -2,11 +2,9 @@ const express = require("express");
 const router = express.Router();
 const wrapAsync = require("../utils/wrapAsync.js");
 const ExpressError = require("../utils/ExpressError.js");
-const { listingSchemaa } = require("../schema.js");
+const { listingSchema } = require("../schema.js");
 
 const Listing = require("../Models/listing.js");
-
-
 
 //validation function for server side for listing
 const validateListing = (req, res, next) => {
@@ -38,9 +36,10 @@ router.get(
   "/:id",
   wrapAsync(async (req, res) => {
     let { id } = req.params;
-    let listing = await Listing.findById(id).populate("reviews");
+    const listing = await Listing.findById(id).populate("reviews");
     if (!listing) {
-      throw new ExpressError(404, "Listing not found");
+      req.flash("error", "Listing you requested for does not exist!");
+      return res.redirect("/listings");
     }
     res.render("listings/showlisting.ejs", { listing });
   }),
@@ -53,6 +52,7 @@ router.post(
   wrapAsync(async (req, res, next) => {
     const newListing = new Listing(req.body.listing);
     await newListing.save();
+    req.flash("success", "New Listing Created!");
     res.redirect("/listings");
   }),
 );
@@ -64,7 +64,8 @@ router.get(
     let { id } = req.params;
     let listing = await Listing.findById(id);
     if (!listing) {
-      throw new ExpressError(404, "Listing not found");
+      req.flash("error", "Listing you requested for does not exist!");
+      return res.redirect("/listings");
     }
     res.render("listings/editlistings.ejs", { listing });
   }),
@@ -81,6 +82,7 @@ router.put(
     let newListing = await Listing.findByIdAndUpdate(id, req.body.listing, {
       runValidators: true,
     });
+    req.flash("success", "Listing updated!");
     res.redirect(`/listings/${id}`);
   }),
 );
@@ -92,10 +94,9 @@ router.delete(
     let { id } = req.params;
     let listing = await Listing.findByIdAndDelete(id);
     console.log(listing);
+    req.flash("success", "Listing deleted!");
     res.redirect("/listings");
   }),
 );
-
-
 
 module.exports = router;
