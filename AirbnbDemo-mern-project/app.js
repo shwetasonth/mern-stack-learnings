@@ -1,3 +1,9 @@
+//very important only works i.e env is loaded only in development mode
+if (process.env.NODE_ENV != "production") {
+  require("dotenv").config();
+}
+
+console.log(process.env.secret);
 const express = require("express");
 const mongoose = require("mongoose");
 const methodOverride = require("method-override");
@@ -37,7 +43,7 @@ passport.deserializeUser(User.deserializeUser());
 app.use((req, res, next) => {
   res.locals.success = req.flash("success");
   res.locals.error = req.flash("error");
-  res.locals.currUser=req.user;
+  res.locals.currUser = req.user;
   next();
 });
 //set path

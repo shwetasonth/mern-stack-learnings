@@ -4,7 +4,7 @@
       <div class="col-8 offset-2">
   <h1 class="mt-2">Create a New Listing</h1>
     <%# Shimmer added by Copilot for the new-listing form fields. %>
-    <form method="POST" action="/listings" class="needs-validation" novalidate>
+    <form method="POST" action="/listings" enctype="multipart/form-data" class="needs-validation" novalidate>
       <div  class="mb-3">
 
         <label for="title" class="form-label">Title</label>
@@ -37,15 +37,16 @@
 
 
       <div  class="mb-3">
-         <label for="image" class="form-label">Image</label>
-   
+         
+
+      <label for="image" class="form-label">Upload Listing Image Link</label>
       <input
-      id="image"
-        type="text"
-        placeholder="image URL"
+      id="image" 
+        type="file"
+      
         name="listing[image]"
           class="form-control"
-    
+    required
       />   </div>
 <div class="row">
   <div class="col-md-4">
